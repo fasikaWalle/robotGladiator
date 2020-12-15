@@ -6,21 +6,20 @@ var enemyAttack = [10,20,30];
 var playerMoney = 20;
 var enemyHealth=[30,20,30];
 var enemyName = ["roborto", "alan", "k'naan"];
-var fight = function () {
-    alert("welcome to  robot gladiators");
-    var start = window.prompt("write fight if you want to fight  or write skip if you want to skip");
-    for (var i = 0; i < enemyName.length; i++) {
+alert("welcome to  robot gladiators");
+var start = window.prompt("write fight if you want to fight  or write skip if you want to skip");
+var fight = function (i) {
         if (start == "fight" || start == "FIGHT") {
-            while (enemyHealth[i] != 0 && playerHealth != 0) {
+            while (enemyHealth != 0 && playerHealth != 0) {
                 enemyHealth[i] = enemyHealth[i] - playerAttack;
                 if (enemyHealth[i] != 0) {
                     //player defeat the enemy
-                    alert(playerName + " " + "attack" + " " + enemyName[i] + " " + "the remaining health of"+ " " +enemyHealth[i]+" "+"is:" + " " + enemyHealth[i]);
+                    alert(playerName+ " " + "attack" + " " + enemyName[i] + " " + "the remaining health of"+ " " +enemyHealth[i]+" "+"is:" + " " + enemyHealth[i]);
                    console.log(playerName + " " + "attack" + " " + enemyName[i] + " " + "the remaining health of"+" "+ enemyHealth[i]+" "+"is:" + " " + enemyHealth[i]);
                 } else {
                     //enemy loose
                     alert(enemyName[i] + " " + "has died!");
-                    console.log(enemyName[i] + " " + "has died!");
+                  //  console.log(enemyName[i] + " " + "has died!");
                     break;
                 }
                 playerHealth = playerHealth - enemyAttack[i];
@@ -31,9 +30,8 @@ var fight = function () {
                 } else {
                     //player loose
                     alert(playerName + " " + "has died!");
-                    console.log(playerName + " " + "has died!");
+                  //  console.log(playerName + " " + "has died!");
                     break;
-
                 }
 
             }
@@ -42,7 +40,7 @@ var fight = function () {
                 playerMoney = playerMoney - 10;
                 alert("the remaining money of" + "  " + playerName + "  " + "is:" + "  " +  playerMoney);
                 console.log("the remaining money of" + "  " + playerName + "  " + "is:" + "  " +  playerMoney);
-                break;
+            
             } else {
                 fight();
             }
@@ -50,6 +48,10 @@ var fight = function () {
             alert("please choose a valid option");
             fight();
         }
-    }
+    
 }
-fight();
+
+for(var i=0;i<enemyName.length;i++){
+    debugger;
+   fight(i);
+}
