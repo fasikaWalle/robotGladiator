@@ -1,13 +1,15 @@
 var EnemyName = "roborto";
-var playerHealth = 200;
+var playerHealth = 100;
 var playerAttack = 10;
-var enemyAttack = [10, 20, 30];
+var enemyAttack = [10, 10, 20];
 var playerMoney = 20;
-var enemyHealth = [30, 20, 30];
+var enemyHealth = [10, 20, 30];
 var enemyName = ["roborto", "alan", "k'naan"];
 
 var fight = function () {
     for (var i = 0; i < enemyName.length; i++) {
+        var round=i+1;
+        alert("welcome to Battlebots round"+" " + round);
         while (enemyHealth != 0 && playerHealth != 0) {
             var checkSkip = window.confirm("do you want to skip the opponent?");
             if (checkSkip) {
@@ -39,6 +41,7 @@ var fight = function () {
         }
 
 }
+alert("You have lost your robot in battle! game over!");
 }
 
 alert("welcome to  robot gladiators");
