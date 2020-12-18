@@ -14,7 +14,7 @@ var playerInfo = {
     Money: 20,
     Attack: 10,
     Health: 100,
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     reset: function () {
         this.health = 100;
         this.money = 20;
@@ -36,6 +36,7 @@ var startGame = function () {
             window.alert('Welcome to Robot Gladiators! Round ' + (
                 i + 1
             ));
+            // debugger;
             var pickedEnemyObj = enemyInfo[i];
             pickedEnemyObj.health = randomNumber(40, 60);
             fight(pickedEnemyObj);
@@ -103,6 +104,14 @@ var endGame = function () {
         } else {
             window.alert('Thank you for playing Battlebots! Come back soon!');
         }
+    }
+    function getPlayerName() {
+        var name = "";
+        while (name === null || name === '') {
+            name = window.prompt("What is your robot's name?");
+        }
+        console.log("Your robot's name is" + name);
+        return name;
     }
 
     var shop = function () {
