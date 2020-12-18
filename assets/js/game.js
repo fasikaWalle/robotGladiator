@@ -1,9 +1,8 @@
-var EnemyName = "roborto";
 var playerHealth = 100;
 var playerAttack = 10;
-var enemyAttack = [20, 10, 20];
+var enemyAttack = 12;
 var playerMoney = 20;
-var enemyHealth = [20, 20, 30];
+var enemyHealth;
 var enemyNames = ["roborto", "alan", "k'naan"];
 var playerName = window.prompt("What is your robot's name?");
 var startGame = function () {
@@ -23,7 +22,7 @@ var startGame = function () {
     endGame();
 }
 function fight(enemyName, j) {
-    while (playerHealth > 0 && enemyHealth[j] > 0) {
+    while (playerHealth > 0 && enemyHealth > 0) {
         var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
         if (promptFight === 'skip' || promptFight === 'SKIP') {
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
@@ -34,10 +33,10 @@ function fight(enemyName, j) {
                 break;
             }
         } else if (promptFight === 'fight' || promptFight === 'FIGHT') { // enemyHealth[j] = enemyHealth[j] - playerAttack;
-            enemyHealth[j] = Math.max(0, enemyHealth[j] - playerAttack);
-            console.log(playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth[j] + ' health remaining.');
-            if (enemyHealth[j] <= 0) {
-                window.alert(enemyName + ' has died!');
+            enemyHealth = Math.max(0, enemyHealth - playerAttack);
+            console.log(playerName + ' attacked ' + enemyName[j] + '. ' + enemyName[j] + ' now has ' + enemyHealth + ' health remaining.');
+            if (enemyHealth <= 0) {
+                window.alert(enemyNames[j] + ' has died!');
                 // playerMoney = playerMoney + 20;
                 playerMoney = Math.max(0, playerMoney + 20);
                 var storeConfirm = window.confirm('The fight is over, visit the store before the next round?');
@@ -46,14 +45,14 @@ function fight(enemyName, j) {
                 }
                 break;
             } else {
-                window.alert(enemyName + ' still has ' + enemyHealth[j] + ' health left.');
+                window.alert(enemyNames[j] + ' still has ' + enemyHealth + ' health left.');
             }
             // playerHealth = playerHealth - enemyAttack[j];
             // playerHealth = Math.max(0, playerHealth - enemyAttack[j])
             // playerHealth = Math.max(0, playerHealth - enemyAttack[j]);
             var damage = randomNumber(enemyAttack - 3, enemyAttack);
             playerHealth = Math.max(0, playerHealth - damage);
-            console.log(enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.');
+            console.log(enemyNames[j] + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.');
             if (playerHealth <= 0) {
                 window.alert(playerName + ' has died!');
                 break;
