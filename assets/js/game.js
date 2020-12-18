@@ -8,11 +8,12 @@ var enemyNames = ["roborto", "alan", "k'naan"];
 var playerName = window.prompt("What is your robot's name?");
 var startGame = function () {
     enemyHealth = Math.floor(Math.random() * 21) + 40;
-    
     for (var i = 0; i < enemyNames.length; i++) {
-        enemyHealth[i] =Math.max(0, enemyHealth[i] - damage);
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+        enemyHealth = Math.max(0, enemyHealth - damage);
+        // enemyHealth[i] = randomNumber(40, 60);
         if (playerHealth > 0) {
-            alert("welcome to robot gladiator" + " " + ( i + 1));
+            alert("welcome to robot gladiator" + " " + playerName);
             var pickedEnemyName = enemyNames[i];
             fight(pickedEnemyName, i);
         } else {
@@ -48,8 +49,10 @@ function fight(enemyName, j) {
                 window.alert(enemyName + ' still has ' + enemyHealth[j] + ' health left.');
             }
             // playerHealth = playerHealth - enemyAttack[j];
-           // playerHealth = Math.max(0, playerHealth - enemyAttack[j])
-            playerHealth = Math.max(0, playerHealth - enemyAttack[j]);
+            // playerHealth = Math.max(0, playerHealth - enemyAttack[j])
+            // playerHealth = Math.max(0, playerHealth - enemyAttack[j]);
+            var damage = randomNumber(enemyAttack - 3, enemyAttack);
+            playerHealth = Math.max(0, playerHealth - damage);
             console.log(enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.');
             if (playerHealth <= 0) {
                 window.alert(playerName + ' has died!');
@@ -96,18 +99,13 @@ var shop = function () { // ask player what they'd like to do
             break;
     }
 };
+
 startGame();
 
- function randomNumber(min,max) {
-    var value = Math.floor(Math.random() * (max-min+1)) + 40;
-    return value;
-  };
-// var playAgainConfirm = window.confirm("Would you like to play again?");
+function randomNumber(min, max) {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
 
-// if (playAgainConfirm) {
-// restart the game
-// startGame();
-// }
-// else {
-// window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-// }
+    return value;
+};
+// var playAgainConfirm = window.confirm("Would you like to play again?");
+console.log(Math.PI);
