@@ -32,6 +32,7 @@ var playerInfo = {
 var startGame = function () {
     playerInfo.reset();
     for (var i = 0; i < enemyInfo.length; i++) {
+        
         if (playerInfo.health > 0) {
             window.alert('Welcome to Robot Gladiators! Round ' + (
                 i + 1
@@ -113,11 +114,26 @@ var fight = function (enemy) { // keep track of who goes first
   };
 var endGame = function () {
     window.alert("The game has now ended. Let's see how you did!");
+    var highScore = localStorage.getItem("highscore");
+    // highScore = highScore || 0; If the variable on the left of the || is truthy, then use it for the assignment value. 
+    if (highScore === null) {
+      highScore = 0;
+    }
+    if (playerInfo.money > highScore) {
+        localStorage.setItem("highscore", playerInfo.money);
+        localStorage.setItem("name", playerInfo.name);
+    
+        alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+      } 
+      else {
+        alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
+      }
     if (playerInfo.Health> 0) {
                 window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.Money + ".");
             } else {
                 window.alert("You've lost your robot in battle.");
             }
+           
             var playAgainConfirm = window.confirm('Would you like to play again?');
 
             if (playAgainConfirm) {
@@ -158,13 +174,17 @@ var endGame = function () {
         };
         startGame();
         function randomNumber(min, max) {
-            var value = Math.floor(Math.random() * (max - min + 1) + min);
+            var value = Math.floor(Math.random() * (max - min) + min);
             return value;
         };
+       
         // var playAgainConfirm = window.confirm("Would you like to play again?");
-        console.log(Math.PI);
-        console.log(this.playerInfo);
-        console.log(enemyInfo);
-        console.log(enemyInfo[0]);
-        console.log(enemyInfo[0].name);
-        console.log(enemyInfo[0]['attack']);
+        // console.log(Math.PI);
+        // console.log(this.playerInfo);
+        // console.log(enemyInfo);
+        // console.log(enemyInfo[0]);
+        // console.log(enemyInfo[0].name);
+        // console.log(enemyInfo[0]['attack']);
+        // console.log(localStorage.setItem("color","red"));
+        
+        
