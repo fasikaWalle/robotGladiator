@@ -177,6 +177,7 @@ var endGame = function () {
             var value = Math.floor(Math.random() * (max - min) + min);
             return value;
         };
+       
         // var playAgainConfirm = window.confirm("Would you like to play again?");
         // console.log(Math.PI);
         // console.log(this.playerInfo);
